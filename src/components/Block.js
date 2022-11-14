@@ -34,20 +34,20 @@ export default function Block(props) {
   return (
     <div className="App">
       {
-        props.block_array?.map((element, i) => (
-          <div className={`block${element}`} key={element}>
-            <h1>{element}</h1>
+        props.block_array.slice(0,props.blockValue)?.map((element, i) => (
+          <div className={`blockA`} key={element}>
+            <h1>{element}</h1>   
             {
               i === 0 ?
                 <AiFillCaretRight onClick={() => clickToRightHandler(element)} className='rightIcon' />
-                : i === (props.block_array.length - 1) ?
+                : i === props.blockValue - 1 ?
                   <AiFillCaretLeft onClick={() => clickToLeftHandler(element)} className='leftIcon' />
                   :
                   <>
                     <AiFillCaretLeft onClick={() => clickToLeftHandler(element)} className='leftIcon' />
                     <AiFillCaretRight onClick={() => clickToRightHandler(element)} className='rightIcon' />
                   </>
-            }
+          }
           </div>
         ))
       }
