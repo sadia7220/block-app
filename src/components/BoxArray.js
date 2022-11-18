@@ -4,38 +4,42 @@ import Box from './Box';
 
 const BoxArray = () => {
 
-  const [boxArray, setBoxArray] = React.useState(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-    'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-    'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-    'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-    'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']);
+  const numBoxes = 50;
+
+  const arr1 = Array(...Array(parseInt(numBoxes)).keys());
+
+  const [arr, setArr] = React.useState(arr1);
 
   const moveToRight = (i) => {
-    const array = [...boxArray];
+    const array = [...arr];
     [array[i], array[i + 1]] = [array[i + 1], array[i]];
-    setBoxArray(array);
+    setArr(array);
   }
 
   const moveToLeft = (i) => {
-    const array = [...boxArray];
+    const array = [...arr];
     [array[i - 1], array[i]] = [array[i], array[i - 1]];
-    setBoxArray(array);
+    setArr(array);
   }
+
 
   return (
     <div>
-      {boxArray.map((element, i) => {
+      {arr.map((element, i) => {
+
         const moveLeft = i > 0 ? () => moveToLeft(i) : null;
-        const moveRight = i < boxArray.length - 1 ? () => moveToRight(i) : null;
+        const moveRight = i < numBoxes - 1 ? () => moveToRight(i) : null;
+       
         return (
-          <div key={element} >
+          <div key={element}>
             <Box
+              i={i}
               element={element}
               moveLeft={moveLeft}
               moveRight={moveRight}
             />
           </div>
-        )
+        ) 
       })}
     </div>
   );
