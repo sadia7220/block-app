@@ -6,7 +6,7 @@ export default function Box(props) {
   const { element, moveLeft, moveRight } = props;
 
   return (
-    <div className={`blockA`}>
+    <div className="box">
       <h1>{element}</h1>
       {
         moveLeft ?
